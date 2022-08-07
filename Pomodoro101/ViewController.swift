@@ -73,7 +73,7 @@ class ViewController: UIViewController {
             formatter.unitsStyle = .positional
             let formattedString = formatter.string(from: TimeInterval(showTime))!
             
-            print(formattedString)
+
             
             let formatter2 = DateComponentsFormatter()
             formatter2.unitsStyle = .short
