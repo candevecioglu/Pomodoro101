@@ -13,11 +13,12 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
-    var player       : AVAudioPlayer!
-    var timer        = Timer()
-    var totalTime    = 1500
-    var showTime     = 1500
-    var secondPassed = 0
+    var player           : AVAudioPlayer!
+    var timer            = Timer()
+    var totalTime        = 1500
+    var showTime         = 1500
+    var secondPassed     = 0
+    var sessionCompleted = 0
     
     @IBOutlet weak var greetingTextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -28,6 +29,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var forestLabel: UIButton!
     @IBOutlet weak var rainLabel: UIButton!
     @IBOutlet weak var abientSoundLabel: UILabel!
+    @IBOutlet weak var muteLabel: UIButton!
+    @IBOutlet weak var completedSessionsLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +52,6 @@ class ViewController: UIViewController {
         
         startButtonLabel.isEnabled = false
         resetButtonLabel.isEnabled = true
-        
-
         
     }
     
@@ -73,8 +75,6 @@ class ViewController: UIViewController {
             formatter.unitsStyle = .positional
             let formattedString = formatter.string(from: TimeInterval(showTime))!
             
-
-            
             let formatter2 = DateComponentsFormatter()
             formatter2.unitsStyle = .short
             let formattedString2 = formatter2.string(from: TimeInterval(secondPassed))!
@@ -88,6 +88,8 @@ class ViewController: UIViewController {
             timeLabel.text = "Done!"
             greetingTextLabel.text = "Session completed! One more?"
             startButtonLabel.isEnabled = true
+            sessionCompleted += 1
+            completedSessionsLabel.text = "Completed sessions: \(sessionCompleted)"
             playSound()
 
             
@@ -101,31 +103,30 @@ class ViewController: UIViewController {
     }
     
     @IBAction func libraryButton(_ sender: UIButton) {
-        
-        let url = Bundle.main.url(forResource: "library", withExtension: "mp3")
-        player = try! AVAudioPlayer(contentsOf: url!)
-        abientSoundLabel.text = "You are in the Library shh..."
-        player.play()
-        
+        ambientSound(ambient: "library", soundMessage: "You are in the Library shh...")
     }
     
     @IBAction func forestButton(_ sender: UIButton) {
-        
-        let url = Bundle.main.url(forResource: "forest", withExtension: "mp3")
-        player = try! AVAudioPlayer(contentsOf: url!)
-        abientSoundLabel.text = "Trees are everywhere!"
-        player.play()
-        
+        ambientSound(ambient: "forest", soundMessage: "Trees are everywhere!")
     }
     
     
     @IBAction func rainButton(_ sender: UIButton) {
-        
-        let url = Bundle.main.url(forResource: "rain", withExtension: "mp3")
+        ambientSound(ambient: "rain", soundMessage: "Can you hear the rain? :)")
+    }
+    
+    @IBAction func muteButton(_ sender: UIButton) {
+        abientSoundLabel.text = "Shhh..."
+        player.stop()
+    }
+    
+    
+    func ambientSound (ambient: String, soundMessage: String) {
+        let url = Bundle.main.url(forResource: ambient, withExtension: "mp3")
         player = try! AVAudioPlayer(contentsOf: url!)
-        abientSoundLabel.text = "Can you hear the rain? :)"
+        abientSoundLabel.text = soundMessage
         player.play()
-        
+
     }
     
 }
