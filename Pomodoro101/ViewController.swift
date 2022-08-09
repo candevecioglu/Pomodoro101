@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     var showTime         = 1500
     var secondPassed     = 0
     var sessionCompleted = 0
+    var contants         = Contants()
     
     @IBOutlet weak var greetingTextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -36,7 +37,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timeLabel.text = "25:00"
+        timeLabel.text = contants.initialTimeText
         resetButtonLabel.isEnabled = false
         
     }
@@ -59,30 +60,35 @@ class ViewController: UIViewController {
         timer.invalidate()
         timeLabel.text = "25:00"
         startButtonLabel.isEnabled = true
-        greetingTextLabel.text = "Okey try again I'm ready!"
+        greetingTextLabel.text = contants.greetingAgainText
         progressBarLabel.progress = 0
         showTime     = 1500
         secondPassed = 0
+        player.stop()
+        abientSoundLabel.text = "Ambient sounds"
+    }
+    
+    func dateFormatter () {
+        // Date formatter integer to time
+        let formatterCounter = DateComponentsFormatter()
+        formatterCounter.unitsStyle = .positional
+        let formattedCounter = formatterCounter.string(from: TimeInterval(showTime))!
+        
+        let formatterGreeting = DateComponentsFormatter()
+        formatterGreeting.unitsStyle = .short
+        let formattedGreeting = formatterGreeting.string(from: TimeInterval(secondPassed))!
+        greetingTextLabel.text = "Session started \(formattedGreeting) ago."
+        timeLabel.text = String(formattedCounter)
     }
     
     
-    @objc func updateCounter() {
+    @objc func updateCounter () {
         if secondPassed < totalTime {
             secondPassed += 1
             showTime -= 1
-            
-            let formatter = DateComponentsFormatter()
-            formatter.unitsStyle = .positional
-            let formattedString = formatter.string(from: TimeInterval(showTime))!
-            
-            let formatter2 = DateComponentsFormatter()
-            formatter2.unitsStyle = .short
-            let formattedString2 = formatter2.string(from: TimeInterval(secondPassed))!
-            
-            greetingTextLabel.text = "Session started \(formattedString2) ago."
-            
-            timeLabel.text = String(formattedString)
+            dateFormatter()
             progressBarLabel.progress = Float(secondPassed) / Float(totalTime)
+            
         } else {
             timer.invalidate()
             timeLabel.text = "Done!"
