@@ -5,6 +5,8 @@
 //  Created by M. Can Devecioğlu on 9.08.2022.
 //
 
+// Missing constants...
+
 import Foundation
 
 let viewController = ViewController()
