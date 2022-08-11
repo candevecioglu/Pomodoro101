@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     var showTime         = 1500
     var secondPassed     = 0
     var sessionCompleted = 0
-    var contants         = Contants()
+    var constants        = Contants()
     
     @IBOutlet weak var greetingTextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timeLabel.text = contants.initialTimeText
+        timeLabel.text = constants.initialTimeText
         resetButtonLabel.isEnabled = false
         
     }
@@ -45,39 +45,40 @@ class ViewController: UIViewController {
     @IBAction func startButtonPressed(_ sender: UIButton) {
         
         timer.invalidate()
-        progressBarLabel.progress = 0
-        showTime     = 1500
-        totalTime    = 1500
-        secondPassed = 0
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        
+        progressBarLabel.progress  = 0
+        showTime                   = 1500
+        totalTime                  = 1500
+        secondPassed               = 0
+        timer                      = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         startButtonLabel.isEnabled = false
         resetButtonLabel.isEnabled = true
         
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
+        
         timer.invalidate()
-        timeLabel.text = "25:00"
+        timeLabel.text             = constants.initialTimeText
         startButtonLabel.isEnabled = true
-        greetingTextLabel.text = contants.greetingAgainText
-        progressBarLabel.progress = 0
-        showTime     = 1500
-        secondPassed = 0
+        greetingTextLabel.text     = constants.greetingAgainText
+        progressBarLabel.progress  = 0
+        showTime                   = 1500
+        secondPassed               = 0
+        abientSoundLabel.text      = constants.ambientSound
         player.stop()
-        abientSoundLabel.text = "Ambient sounds"
+        
     }
     
     func dateFormatter () {
-        // Date formatter integer to time
-        let formatterCounter = DateComponentsFormatter()
-        formatterCounter.unitsStyle = .positional
-        let formattedCounter = formatterCounter.string(from: TimeInterval(showTime))!
+
+        let formatterCounter         = DateComponentsFormatter()
+        formatterCounter.unitsStyle  = .positional
+        let formattedCounter         = formatterCounter.string(from: TimeInterval(showTime))!
         
-        let formatterGreeting = DateComponentsFormatter()
+        let formatterGreeting        = DateComponentsFormatter()
         formatterGreeting.unitsStyle = .short
-        let formattedGreeting = formatterGreeting.string(from: TimeInterval(secondPassed))!
-        greetingTextLabel.text = "Session started \(formattedGreeting) ago."
+        let formattedGreeting        = formatterGreeting.string(from: TimeInterval(secondPassed))!
+        greetingTextLabel.text       = "Session started \(formattedGreeting) ago."
         timeLabel.text = String(formattedCounter)
     }
     
@@ -91,14 +92,13 @@ class ViewController: UIViewController {
             
         } else {
             timer.invalidate()
-            timeLabel.text = "Done!"
-            greetingTextLabel.text = "Session completed! One more?"
-            startButtonLabel.isEnabled = true
-            sessionCompleted += 1
+            timeLabel.text              = constants.done
+            greetingTextLabel.text      = constants.sessionCompletedOneMore
+            startButtonLabel.isEnabled  = true
+            sessionCompleted           += 1
             completedSessionsLabel.text = "Completed sessions: \(sessionCompleted)"
             playSound()
 
-            
         }
     }
     
@@ -109,16 +109,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func libraryButton(_ sender: UIButton) {
-        ambientSound(ambient: "library", soundMessage: "You are in the Library shh...")
+        ambientSound(ambient: "library", soundMessage: constants.libraryAmbientText)
     }
     
     @IBAction func forestButton(_ sender: UIButton) {
-        ambientSound(ambient: "forest", soundMessage: "Trees are everywhere!")
+        ambientSound(ambient: "forest", soundMessage: constants.forestAmbientText)
     }
     
     
     @IBAction func rainButton(_ sender: UIButton) {
-        ambientSound(ambient: "rain", soundMessage: "Can you hear the rain? :)")
+        ambientSound(ambient: "rain", soundMessage: constants.rainAmbientText)
     }
     
     @IBAction func muteButton(_ sender: UIButton) {

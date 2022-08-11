@@ -14,5 +14,12 @@ let viewController = ViewController()
 struct Contants {
     let initialTimeText = "25:00"
     let greetingAgainText = "Okey try again I'm ready!"
+    let ambientSound = "Ambient sounds"
+    let done = "Done!"
+    let sessionCompletedOneMore = "Session completed! One more?"
+    let libraryAmbientText = "You are in the Library shh..."
+    let forestAmbientText = "Trees are everywhere!"
+    let rainAmbientText = "Can you hear the rain? :)"
+    let muteText = "Shhh..."
 
 }
