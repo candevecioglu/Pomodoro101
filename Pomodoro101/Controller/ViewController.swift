@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     var secondPassed     = 0
     var sessionCompleted = 0
     var constants        = Contants()
+    var pomodoroModel    = Model()
     
     @IBOutlet weak var greetingTextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!

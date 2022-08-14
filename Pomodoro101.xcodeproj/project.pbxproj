@@ -18,6 +18,7 @@
 		4034656728A05345002EA2E2 /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4034656428A05345002EA2E2 /* rain.mp3 */; };
 		4034656828A05345002EA2E2 /* forest.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4034656528A05345002EA2E2 /* forest.mp3 */; };
 		40429EE528A2ECCA0032C5AC /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40429EE428A2ECCA0032C5AC /* Contants.swift */; };
+		40E8561028A99F7B00F03FAA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8560F28A99F7B00F03FAA /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		4034656428A05345002EA2E2 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
 		4034656528A05345002EA2E2 /* forest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest.mp3; sourceTree = "<group>"; };
 		40429EE428A2ECCA0032C5AC /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
+		40E8560F28A99F7B00F03FAA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,9 +70,9 @@
 			children = (
 				4034654D28A03CCA002EA2E2 /* AppDelegate.swift */,
 				4034654F28A03CCA002EA2E2 /* SceneDelegate.swift */,
-				4034655128A03CCA002EA2E2 /* ViewController.swift */,
-				40429EE428A2ECCA0032C5AC /* Contants.swift */,
-				4034655328A03CCA002EA2E2 /* Main.storyboard */,
+				40E8560C28A99EE800F03FAA /* Model */,
+				40E8560D28A99EF200F03FAA /* View */,
+				40E8560E28A99EF900F03FAA /* Controller */,
 				4034655628A03CCB002EA2E2 /* Assets.xcassets */,
 				4034655828A03CCB002EA2E2 /* LaunchScreen.storyboard */,
 				4034655B28A03CCB002EA2E2 /* Info.plist */,
@@ -80,6 +82,31 @@
 				4034656428A05345002EA2E2 /* rain.mp3 */,
 			);
 			path = Pomodoro101;
+			sourceTree = "<group>";
+		};
+		40E8560C28A99EE800F03FAA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40E8560F28A99F7B00F03FAA /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		40E8560D28A99EF200F03FAA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				40429EE428A2ECCA0032C5AC /* Contants.swift */,
+				4034655328A03CCA002EA2E2 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		40E8560E28A99EF900F03FAA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4034655128A03CCA002EA2E2 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E8561028A99F7B00F03FAA /* Model.swift in Sources */,
 				4034655228A03CCA002EA2E2 /* ViewController.swift in Sources */,
 				4034654E28A03CCA002EA2E2 /* AppDelegate.swift in Sources */,
 				4034655028A03CCA002EA2E2 /* SceneDelegate.swift in Sources */,
