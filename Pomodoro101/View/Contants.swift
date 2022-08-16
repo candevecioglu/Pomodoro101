@@ -17,9 +17,12 @@ struct Contants {
     let ambientSound = "Ambient sounds"
     let done = "Done!"
     let sessionCompletedOneMore = "Session completed! One more?"
-    let libraryAmbientText = "You are in the Library shh..."
+    let libraryAmbientText = "In the Library shh..."
     let forestAmbientText = "Trees are everywhere!"
     let rainAmbientText = "Can you hear the rain? :)"
     let muteText = "Shhh..."
+    let library = "library"
+    let forest = "forest"
+    let rain = "rain"
 
 }

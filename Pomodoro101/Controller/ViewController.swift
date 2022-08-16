@@ -9,18 +9,17 @@
 //
 
 import UIKit
-import AVFoundation
+
 
 class ViewController: UIViewController {
     
-    var player           : AVAudioPlayer!
     var timer            = Timer()
     var totalTime        = 1500
     var showTime         = 1500
     var secondPassed     = 0
     var sessionCompleted = 0
     var constants        = Contants()
-    var pomodoroModel    = Model()
+    var pomodoroBrain    = Model()
     
     @IBOutlet weak var greetingTextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -66,7 +65,7 @@ class ViewController: UIViewController {
         showTime                   = 1500
         secondPassed               = 0
         abientSoundLabel.text      = constants.ambientSound
-        player.stop()
+        pomodoroBrain.player.stop()
         
     }
     
@@ -98,42 +97,30 @@ class ViewController: UIViewController {
             startButtonLabel.isEnabled  = true
             sessionCompleted           += 1
             completedSessionsLabel.text = "Completed sessions: \(sessionCompleted)"
-            playSound()
+            pomodoroBrain.playSound()
 
         }
     }
     
-    func playSound() {
-        let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
-        player = try! AVAudioPlayer(contentsOf: url!)
-        player.play()
-    }
-    
     @IBAction func libraryButton(_ sender: UIButton) {
-        ambientSound(ambient: "library", soundMessage: constants.libraryAmbientText)
+        pomodoroBrain.ambientSound(ambient: constants.library, soundMessage: constants.libraryAmbientText)
+        abientSoundLabel.text = constants.libraryAmbientText
     }
     
     @IBAction func forestButton(_ sender: UIButton) {
-        ambientSound(ambient: "forest", soundMessage: constants.forestAmbientText)
+        pomodoroBrain.ambientSound(ambient: constants.forest, soundMessage: constants.forestAmbientText)
+        abientSoundLabel.text = constants.forestAmbientText
     }
     
     
     @IBAction func rainButton(_ sender: UIButton) {
-        ambientSound(ambient: "rain", soundMessage: constants.rainAmbientText)
+        pomodoroBrain.ambientSound(ambient: constants.rain, soundMessage: constants.rainAmbientText)
+        abientSoundLabel.text = constants.rainAmbientText
     }
     
     @IBAction func muteButton(_ sender: UIButton) {
-        abientSoundLabel.text = "Shhh..."
-        player.stop()
-    }
-    
-    
-    func ambientSound (ambient: String, soundMessage: String) {
-        let url = Bundle.main.url(forResource: ambient, withExtension: "mp3")
-        player = try! AVAudioPlayer(contentsOf: url!)
-        abientSoundLabel.text = soundMessage
-        player.play()
-
+        abientSoundLabel.text = constants.muteText
+        pomodoroBrain.player.stop()
     }
     
 }
